@@ -16,7 +16,6 @@ class Map:
             print(update_list, end="")
 
     def list_map(self):
-        
         return self.list_labyrinth
 
 
