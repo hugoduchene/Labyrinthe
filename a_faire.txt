@@ -1,0 +1,13 @@
+
+- import (pas all) 
+- env virtuel et install pygame + générer le requierments.txt (pip freeze > requirements.txt)
+
+- class movement = Hero (maj au premier caractère) 
+- mettre docstring sur les classes 
+
+- fonction main qui lance le programme 
+
+- se reseigner sur l'encapsulation 
+- classe qui affiche les sprites 
+
+- faire un readme sur github 

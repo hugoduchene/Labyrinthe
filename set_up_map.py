@@ -1,15 +1,16 @@
-from settings import * 
+import settings
 from random import randint
-from position import position
+from position import Position
+
 class Map:
     def __init__(self):
         self.list_objects = []
-        self.position = position()
+        self.position = Position()
         self.list_labyrinth = self.load_map()
         self.list_labyrinth = [list(s) for s in self.list_labyrinth]
     
     def load_map(self):
-        with open(path, 'r') as file:
+        with open(settings.path, 'r') as file:
             list_labyrinth = file.readlines()
         return list_labyrinth
     
@@ -22,7 +23,7 @@ class Map:
         return self.list_labyrinth
 
     def put_objetcs(self, map_class):
-        place_object = self.position.research_pos(map_class, path_free)
+        place_object = self.position.research_pos(map_class, settings.path_free)
 
         for loop in range(3):
             length_list = len(place_object)
@@ -31,10 +32,14 @@ class Map:
             (x, y) = self.list_objects[loop]
             x = int(x/50)
             y = int(y/50)
-            map_class[y][x] = objects
+            map_class[y][x] = settings.objects
+        print(self.list_objects)
+        return self.list_objects
             
         
-        return self.list_objects 
+        
+    
+    
 
         
 

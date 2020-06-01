@@ -1,8 +1,7 @@
-from set_up_map import * 
-from settings import * 
+from set_up_map import Map 
+import settings
 
-
-class movement:
+class Hero:
     def __init__(self, map_class):
         self.old_y = 0
         self.old_x = 0
@@ -37,7 +36,7 @@ class movement:
 
     def detect_wall(self):
         things_position = self.labyrinth[self.pos_y][self.pos_x]
-        if things_position == wall:
+        if things_position == settings.wall:
             self.pos_x = 0 
             self.pos_y = 0
             
@@ -47,13 +46,13 @@ class movement:
         
 
     def walk(self):
-        self.labyrinth[self.pos_y][self.pos_x] = hero
+        self.labyrinth[self.pos_y][self.pos_x] = settings.hero
 
     def delete_old_position_x(self):
-        self.labyrinth[self.old_y][self.old_x] = path_free
+        self.labyrinth[self.old_y][self.old_x] = settings.path_free
 
     def delete_old_position_y(self):
-        self.labyrinth[self.old_y][self.old_x] = path_free
+        self.labyrinth[self.old_y][self.old_x] = settings.path_free
 
     
 

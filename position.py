@@ -1,4 +1,4 @@
-class position:
+class Position:
     
     def research_pos(self, map_list, character):
         list_pos = []
