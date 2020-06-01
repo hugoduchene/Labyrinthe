@@ -7,89 +7,91 @@ from score import Point
 from sprites_hero import Hero_sprite
 from sprites_composing import Composing_sprite
 
-Composing_sprite_class = Composing_sprite()
-hero_sprite_class = Hero_sprite()
-position_class = Position()
-map_class = Map() 
-score_class = Point(map_class.list_labyrinth)
 
+class Application:
+    def __init__(self):
+        self.Composing_sprite_class = Composing_sprite()
+        self.hero_sprite_class = Hero_sprite()
+        self.position_class = Position()
+        self.map_class = Map() 
+        self.score_class = Point(self.map_class.list_labyrinth)
+        self.movement_class = Hero(self.map_class)
+        self.new_map = self.map_class.list_map()
+        self.screen = pygame.display.set_mode((750, 750))
+        self.background = pygame.image.load(settings.path_image_Background)
+        self.win_image = pygame.image.load(settings.path_image_win)
+        self.defeat_image = pygame.image.load(settings.path_image_defeat)
+        self.new_map = self.score_class.generate_new_map()
+        self.nbs_point = 0
 
-movement_class = Hero(map_class)
-new_map = map_class.list_map()
+#pygame.init()
 
-pygame.init()
-
-pygame.display.set_caption("labyrinth of mcgyver")
-screen = pygame.display.set_mode((750, 750))
-
-background = pygame.image.load(settings.path_image_Background)
-
-win_image = pygame.image.load(settings.path_image_win)
-
-
-guardian_image = pygame.image.load(settings.path_image_guardian)
-defeat_image = pygame.image.load(settings.path_image_defeat)
-
-new_map = score_class.generate_new_map()
+#pygame.display.set_caption("labyrinth of mcgyver")
 
 
 
-    
 
 
-value = True 
-
-while value:
-    
-    screen.blit(background, (0,0))
-    
-
-    nbs_point = score_class.count_points(map_class.list_labyrinth, new_map)
-    Composing_sprite_class.display_sprite_wall(screen, map_class.list_labyrinth)
-    
-    Composing_sprite_class.display_sprite_object(screen, map_class.list_labyrinth)
-    Composing_sprite_class.display_sprite_guardian(screen, map_class.list_labyrinth)
-    Composing_sprite_class.display_sprite_point(screen, nbs_point)
-    
-    
-    (x, y) = hero_sprite_class.display_sprite_hero(screen, map_class.list_labyrinth)
-    
-    
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            value = False
-        elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_RIGHT and x < 700:
-                movement_class.movement_right()
-                movement_class.detect_wall()
-                movement_class.walk()
-                movement_class.delete_old_position()
-            if event.key == pygame.K_LEFT and x > 0:
-                movement_class.movement_left()
-                movement_class.detect_wall()
-                movement_class.walk()
-                movement_class.delete_old_position()
-            if event.key == pygame.K_DOWN and y < 700:
-                movement_class.movement_down()
-                movement_class.detect_wall()
-                movement_class.walk()
-                movement_class.delete_old_position()
-            if event.key == pygame.K_UP and y > 0:
-                movement_class.movement_up()
-                movement_class.detect_wall()
-                movement_class.walk()
-                movement_class.delete_old_position()
-                
-
-    if (x, y) == (700, 700) and nbs_point == 3:
-        screen.blit(win_image, (0,0))
-    elif (x, y) == (700, 700) and nbs_point != 3:
-        screen.blit(defeat_image, (0,0))
-    else:
-        pass
-
-    pygame.display.update()
-
+    def main_display(self):
+        self.screen.blit(self.background, (0,0))
         
 
-pygame.quit()
+        self.nbs_point = self.score_class.count_points(self.map_class.list_labyrinth, self.new_map)
+        self.Composing_sprite_class.display_sprite_wall(self.screen, self.map_class.list_labyrinth)
+
+        self.Composing_sprite_class.display_sprite_object(self.screen, self.map_class.list_labyrinth)
+        self.Composing_sprite_class.display_sprite_guardian(self.screen, self.map_class.list_labyrinth)
+        self.Composing_sprite_class.display_sprite_point(self.screen, self.nbs_point)
+
+
+
+    def main_loop(self):
+        value = True 
+
+        while value:
+
+            self.main_display()
+        
+            
+        
+            (x, y) = self.hero_sprite_class.display_sprite_hero(self.screen, self.map_class.list_labyrinth)
+        
+        
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    value = False
+                elif event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_RIGHT and x < 700:
+                        self.movement_class.movement_right()
+                        self.movement_class.detect_wall()
+                        self.movement_class.walk()
+                        self.movement_class.delete_old_position()
+                    if event.key == pygame.K_LEFT and x > 0:
+                        self.movement_class.movement_left()
+                        self.movement_class.detect_wall()
+                        self.movement_class.walk()
+                        self.movement_class.delete_old_position()
+                    if event.key == pygame.K_DOWN and y < 700:
+                        self.movement_class.movement_down()
+                        self.movement_class.detect_wall()
+                        self.movement_class.walk()
+                        self.movement_class.delete_old_position()
+                    if event.key == pygame.K_UP and y > 0:
+                        self.movement_class.movement_up()
+                        self.movement_class.detect_wall()
+                        self.movement_class.walk()
+                        self.movement_class.delete_old_position()
+                        
+
+            if (x, y) == (700, 700) and self.nbs_point == 3:
+                self.screen.blit(self.win_image, (0,0))
+            elif (x, y) == (700, 700) and self.nbs_point != 3:
+                self.screen.blit(self.defeat_image, (0,0))
+            else:
+                pass
+
+            pygame.display.update()
+
+                
+
+        
