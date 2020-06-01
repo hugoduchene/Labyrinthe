@@ -5,9 +5,8 @@ import settings
 
 
 class Point:
-    #objet qui va servir à comptabiliser les points du joueurs 
-
-    def __init__(self, map_class):  #j'initialise l'objets qui va gérer les points
+    #object that will be used to keep track of the player's points
+    def __init__(self, map_class):  #I initialize the object that will handle the points
         self.map = Map()
         self.position = Position()
         self.pos_computer  = (0, 0)
@@ -18,7 +17,7 @@ class Point:
         
     
     def count_points(self, map_class, new_map): 
-        #méthode qui va servir à incrémenter les points si le joueur prend un objet 
+        #method that will be used to increment the points if the player takes an object 
         for m in self.position.research_pos(map_class, settings.hero):
             self.pos_hero = m
             (x_hero, y_hero) = self.pos_hero
@@ -36,7 +35,7 @@ class Point:
                 
     
     def generate_new_map(self):
-        #méthode qui va servir à générer une autre map pour comparer la position de l'objet avec celle du joueur
+        #method that will be used to generate another map to compare the position of the object with that of the player
         for loop in self.list_objects:
             (x, y) = loop
             x = int(x/50)
