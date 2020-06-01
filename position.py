@@ -1,6 +1,8 @@
 class Position:
+    #Objet servant à rechercher la position des différents composants de la map
     
     def research_pos(self, map_list, character):
+        #méthode qui retourne une liste de position (x,y) 
         list_pos = []
         for y in range(15):  # les x sont la coordonnée verticale ?
             for x, c in enumerate(map_list[y]):
