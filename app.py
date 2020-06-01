@@ -9,7 +9,9 @@ from sprites_composing import Composing_sprite
 
 
 class Application:
+    #object that manages user actions 
     def __init__(self):
+        #object initialization
         self.Composing_sprite_class = Composing_sprite()
         self.hero_sprite_class = Hero_sprite()
         self.position_class = Position()
@@ -24,15 +26,13 @@ class Application:
         self.new_map = self.score_class.generate_new_map()
         self.nbs_point = 0
 
-#pygame.init()
-
-#pygame.display.set_caption("labyrinth of mcgyver")
 
 
 
 
 
     def main_display(self):
+        #method loading that displays the components
         self.screen.blit(self.background, (0,0))
         
 
@@ -46,6 +46,7 @@ class Application:
 
 
     def main_loop(self):
+        #method that will handle the events
         value = True 
 
         while value:
@@ -82,7 +83,7 @@ class Application:
                         self.movement_class.walk()
                         self.movement_class.delete_old_position()
                         
-
+            #manages the end screen 
             if (x, y) == (700, 700) and self.nbs_point == 3:
                 self.screen.blit(self.win_image, (0,0))
             elif (x, y) == (700, 700) and self.nbs_point != 3:
