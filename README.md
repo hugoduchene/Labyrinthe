@@ -13,3 +13,4 @@ This code works very simply, the robot advances using a double list and pygame c
 
 # How do we set it up? 
 To install my project, you have to clone my folder and then launch the main.exe file located in the build/exe.win-amd64-3.7 folder.
+To run this file you will need to install all the modules present in the requirements.txt as well as python 3.7.
