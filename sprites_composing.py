@@ -7,7 +7,7 @@ class Composing_sprite:
     #object used to display the components of the maze
     def __init__(self):
         #initialisation de l'objet
-        self.image_guardian =pygame.image.load(settings.path_image_guardian)
+        self.image_guardian = pygame.image.load(settings.path_image_guardian)
         self.image_object = pygame.image.load(settings.path_image_objects)
         self.image_wall = pygame.image.load(settings.path_image_wall)
         self.position = Position()
