@@ -1,12 +1,13 @@
-from position import Position
-from set_up_map import Map
+from monapp.model.position import Position
+from monapp.model.set_up_map import Map
 import settings
 
 
 
 class Point:
-    #object that will be used to keep track of the player's points
-    def __init__(self, map_class):  #I initialize the object that will handle the points
+    """object that will be used to keep track of the player's points"""
+    def __init__(self, map_class):
+        """I initialize the object that will handle the points"""
         self.map = Map()
         self.position = Position()
         self.pos_computer  = (0, 0)
@@ -17,8 +18,8 @@ class Point:
         
     
     def count_points(self, map_class, new_map): 
-        #method that will be used to increment the points if the player takes an object 
-        for m in self.position.research_pos(map_class, settings.hero):
+        """method that will be used to increment the points if the player takes an object""" 
+        for m in self.position.research_pos(map_class, settings.Hero):
             self.pos_hero = m
             (x_hero, y_hero) = self.pos_hero
             x_hero = int(x_hero/50)
@@ -26,22 +27,22 @@ class Point:
         
         for pos_objects in self.list_objects:
             if pos_objects == self.pos_hero:
-                if new_map[y_hero][x_hero] == settings.objects:
+                if new_map[y_hero][x_hero] == settings.Objects:
                     self.point += 1
-                    new_map[y_hero][x_hero] = settings.path_free
-                elif new_map[y_hero][x_hero] == settings.path_free:
+                    new_map[y_hero][x_hero] = settings.Path_free
+                elif new_map[y_hero][x_hero] == settings.Path_free:
                     pass
         return self.point
                 
     
     def generate_new_map(self):
-        #method that will be used to generate another map to compare the position of the object with that of the player
+        """method that will be used to generate another map to compare the position of the object with that of the player"""
         for loop in self.list_objects:
             (x, y) = loop
             x = int(x/50)
             y = int(y/50)
             new_map = self.map.list_labyrinth 
-            new_map[y][x] = settings.objects
+            new_map[y][x] = settings.Objects
         return new_map
         
         

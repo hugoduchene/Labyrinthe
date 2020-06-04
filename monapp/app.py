@@ -1,28 +1,28 @@
-from movement_file import Hero
-from set_up_map import Map
+from monapp.model.hero_file import Hero
+from monapp.model.set_up_map import Map
 import settings
-from position import Position
+from monapp.model.position import Position
 import pygame 
-from score import Point
-from sprites_hero import Hero_sprite
-from sprites_composing import Composing_sprite
+from monapp.model.score import Point
+from monapp.view.sprites_hero import HeroSprite
+from monapp.view.sprites_composing import ComposingSprite
 
 
 class Application:
-    #object that manages user actions 
+    """ object that manages user actions """
     def __init__(self):
         #object initialization
-        self.Composing_sprite_class = Composing_sprite()
-        self.hero_sprite_class = Hero_sprite()
+        self.Composing_sprite_class = ComposingSprite()
+        self.hero_sprite_class = HeroSprite()
         self.position_class = Position()
         self.map_class = Map() 
         self.score_class = Point(self.map_class.list_labyrinth)
         self.movement_class = Hero(self.map_class)
         self.new_map = self.map_class.list_map()
         self.screen = pygame.display.set_mode((750, 750))
-        self.background = pygame.image.load(settings.path_image_Background)
-        self.win_image = pygame.image.load(settings.path_image_win)
-        self.defeat_image = pygame.image.load(settings.path_image_defeat)
+        self.background = pygame.image.load(settings.Path_image_Background)
+        self.win_image = pygame.image.load(settings.Path_image_win)
+        self.defeat_image = pygame.image.load(settings.Path_image_defeat)
         self.new_map = self.score_class.generate_new_map()
         self.nbs_point = 0
 
@@ -32,7 +32,7 @@ class Application:
 
 
     def main_display(self):
-        #method loading that displays the components
+        """method loading that displays the components"""
         self.screen.blit(self.background, (0,0))
         
 
@@ -46,7 +46,7 @@ class Application:
 
 
     def main_loop(self):
-        #method that will handle the events
+        """method that will handle the events"""
         value = True 
 
         while value:
@@ -83,7 +83,7 @@ class Application:
                         self.movement_class.walk()
                         self.movement_class.delete_old_position()
                         
-            #manages the end screen 
+            """manages the end screen"""
             if (x, y) == (700, 700) and self.nbs_point == 3:
                 self.screen.blit(self.win_image, (0,0))
             elif (x, y) == (700, 700) and self.nbs_point != 3:

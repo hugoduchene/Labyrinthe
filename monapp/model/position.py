@@ -1,8 +1,8 @@
 class Position:
-    #Object used to find the position of the different components of the map
+    """Object used to find the position of the different components of the map"""
     
     def research_pos(self, map_list, character):
-        #method that returns a list of positions (x,y) 
+        """method that returns a list of positions (x,y)""" 
         list_pos = []
         for y in range(15):  
             for x, c in enumerate(map_list[y]):

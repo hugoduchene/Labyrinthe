@@ -1,7 +1,7 @@
 import pygame
-from app import Application
+from monapp.app import Application
 
-#program execution
+""" program execution """
 if __name__ == "__main__":
     pygame.init()
     pygame.display.set_caption("labyrinth of mcgyver")
